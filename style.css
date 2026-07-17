@@ -2,19 +2,19 @@
    DESIGN SYSTEM & CUSTOM PROPERTIES
    ========================================== */
 :root {
-    --bg-color: #0b0f19;
-    --card-bg: rgba(17, 24, 39, 0.7);
-    --card-border: rgba(255, 255, 255, 0.06);
+    --bg-color: #0d1117; /* Negro carbón de la locomotora */
+    --card-bg: rgba(22, 28, 38, 0.7);
+    --card-border: rgba(255, 255, 255, 0.05);
     --text-primary: #f3f4f6;
-    --text-secondary: #9ca3af;
-    --text-muted: #6b7280;
-    --accent-primary: #3b82f6; /* Blue */
-    --accent-secondary: #a855f7; /* Purple */
-    --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #d946ef 100%);
-    --accent-gradient-hover: linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #c084fc 100%);
+    --text-secondary: #a1a8b5;
+    --text-muted: #626a78;
+    --accent-primary: #2d8259; /* Verde Bosque elegante de tu camisa y corbata */
+    --accent-secondary: #d97706; /* Dorado cálido de las franjas de la locomotora */
+    --accent-gradient: linear-gradient(135deg, #2d8259 0%, #4f9a73 50%, #d97706 100%);
+    --accent-gradient-hover: linear-gradient(135deg, #1b633e 0%, #3e815c 50%, #b45309 100%);
     --font-heading: 'Outfit', 'Inter', sans-serif;
     --font-body: 'Inter', sans-serif;
-    --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --border-radius: 16px;
     --border-radius-sm: 8px;
@@ -24,13 +24,13 @@
    LIGHT THEME OVERRIDES
    ========================================== */
 body.light-theme {
-    --bg-color: #f3f4f6;
+    --bg-color: #f4f6f8; /* Gris sastre claro inspirado en tu traje */
     --card-bg: rgba(255, 255, 255, 0.85);
-    --card-border: rgba(0, 0, 0, 0.08);
-    --text-primary: #111827;
-    --text-secondary: #4b5563;
-    --text-muted: #9ca3af;
-    --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+    --card-border: rgba(45, 130, 89, 0.08);
+    --text-primary: #1c241e; /* Texto oscuro con matiz forest/pino */
+    --text-secondary: #4a544e;
+    --text-muted: #8d9892;
+    --shadow-premium: 0 10px 30px -10px rgba(45, 130, 89, 0.06);
     background-image: 
         radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.02) 0%, transparent 40%),
         radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.02) 0%, transparent 40%);
