@@ -359,6 +359,20 @@ def build_pdf(filename, lang='es'):
     right_flowables.append(Paragraph(edu_headline, style_sidebar_label))
     right_flowables.append(Paragraph(edu_body, style_sidebar_val))
 
+    # Languages Title
+    lang_title = "Idiomas" if lang == 'es' else "Languages"
+    right_flowables.append(Paragraph(lang_title.upper(), style_h1))
+    right_flowables.append(HRFlowable(width="100%", thickness=0.5, color=COLOR_MUTED, spaceAfter=8, spaceBefore=2))
+    
+    right_flowables.append(Paragraph("Inglés" if lang == 'es' else "English", style_sidebar_label))
+    right_flowables.append(Paragraph(
+        "Técnico / Intermedio (Lectura y comunicación escrita fluida)" if lang == 'es' else "Professional Working Proficiency (Fluent in written & technical communication)", 
+        style_sidebar_val
+    ))
+    
+    right_flowables.append(Paragraph("Español" if lang == 'es' else "Spanish", style_sidebar_label))
+    right_flowables.append(Paragraph("Nativo" if lang == 'es' else "Native speaker", style_sidebar_val))
+
     # --- MASTER TABLE ---
     # Constructing a table to put left and right side-by-side with a nice divider
     # Left column width: 4.8 inches, right column width: 2.7 inches
