@@ -20,6 +20,55 @@
     --border-radius-sm: 8px;
 }
 
+/* ==========================================
+   LIGHT THEME OVERRIDES
+   ========================================== */
+body.light-theme {
+    --bg-color: #f3f4f6;
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --card-border: rgba(0, 0, 0, 0.08);
+    --text-primary: #111827;
+    --text-secondary: #4b5563;
+    --text-muted: #9ca3af;
+    --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.02) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.02) 0%, transparent 40%);
+}
+
+body.light-theme .timeline::before {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .tech-tag {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.06);
+}
+
+body.light-theme .tech-tag:hover {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+body.light-theme .skill-pill {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+body.light-theme .contact-item {
+    background: rgba(0, 0, 0, 0.015);
+    border-color: rgba(0, 0, 0, 0.02);
+}
+
+body.light-theme .contact-item:hover {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .header-photo {
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+
+
 /* Global resets & Base styles */
 * {
     margin: 0;
@@ -53,25 +102,37 @@ html[lang="en"] .lang-es {
 }
 
 /* ==========================================
-   LANGUAGE SWITCH TOGGLE STYLES
+   CONTROLS (LANGUAGE & THEME) STYLES
    ========================================== */
-.lang-toggle-container {
+.controls-container {
     position: fixed;
     top: 24px;
     right: 24px;
     background: rgba(17, 24, 39, 0.85);
     backdrop-filter: blur(12px);
     border: 1px solid var(--card-border);
-    padding: 10px 16px;
+    padding: 8px 16px;
     border-radius: 30px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
     z-index: 1000;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: var(--transition-smooth);
 }
 
-.lang-label {
+body.light-theme .controls-container {
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.control-label {
     font-family: var(--font-heading);
     font-weight: 700;
     font-size: 0.85rem;
@@ -80,14 +141,44 @@ html[lang="en"] .lang-es {
     user-select: none;
 }
 
-html[lang="es"] .lang-label:first-child {
+html[lang="es"] .control-label:first-child {
     color: var(--accent-primary);
     text-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
 }
 
-html[lang="en"] .lang-label:last-child {
+html[lang="en"] .control-label:last-child {
     color: var(--accent-secondary);
     text-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
+}
+
+.control-divider {
+    width: 1px;
+    height: 20px;
+    background: var(--card-border);
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    transition: var(--transition-smooth);
+}
+
+.btn-icon:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--accent-primary);
+}
+
+body.light-theme .btn-icon:hover {
+    background: rgba(0, 0, 0, 0.05);
 }
 
 /* Switch styling */

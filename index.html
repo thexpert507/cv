@@ -14,14 +14,23 @@
 </head>
 <body>
 
-    <!-- Language Toggle Switch -->
-    <div class="lang-toggle-container no-print">
-        <span class="lang-label">ES</span>
-        <label class="switch" aria-label="Toggle Language">
-            <input type="checkbox" id="lang-switch">
-            <span class="slider round"></span>
-        </label>
-        <span class="lang-label">EN</span>
+    <!-- Controls (Language & Theme) -->
+    <div class="controls-container no-print">
+        <!-- Language Switch -->
+        <div class="control-group">
+            <span class="control-label">ES</span>
+            <label class="switch" aria-label="Toggle Language">
+                <input type="checkbox" id="lang-switch">
+                <span class="slider round"></span>
+            </label>
+            <span class="control-label">EN</span>
+        </div>
+        <!-- Divider -->
+        <div class="control-divider"></div>
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle" class="btn-icon" aria-label="Toggle Theme">
+            <i class="fa-solid fa-moon"></i>
+        </button>
     </div>
 
     <div class="cv-container">
