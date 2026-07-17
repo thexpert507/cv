@@ -10,29 +10,29 @@ COLOR_PRIMARY = colors.HexColor('#2d8259')     # Forest Green
 COLOR_SECONDARY = colors.HexColor('#d97706')   # Amber Gold
 COLOR_DARK = colors.HexColor('#1f2937')        # Deep Charcoal
 COLOR_LIGHT = colors.HexColor('#4b5563')       # Medium Grey
-COLOR_MUTED = colors.HexColor('#9ca3af')       # Light Grey
+COLOR_MUTED = colors.HexColor('#e5e7eb')       # Light Grey
 COLOR_BG_SIDEBAR = colors.HexColor('#f8fafc')  # Very light grey
 
 def build_pdf(filename, lang='es'):
-    # Create document
+    # Create document with tight margins (0.3 inch) to maximize 1-page fit
     doc = SimpleDocTemplate(
         filename,
         pagesize=letter,
-        leftMargin=0.4 * inch,
-        rightMargin=0.4 * inch,
-        topMargin=0.4 * inch,
-        bottomMargin=0.4 * inch
+        leftMargin=0.3 * inch,
+        rightMargin=0.3 * inch,
+        topMargin=0.35 * inch,
+        bottomMargin=0.3 * inch
     )
     
     styles = getSampleStyleSheet()
     
-    # Custom styles
+    # Custom styles - optimized for high density 1-page layout
     style_name = ParagraphStyle(
         'CVName',
         parent=styles['Normal'],
         fontName='Helvetica-Bold',
-        fontSize=24,
-        leading=28,
+        fontSize=20,
+        leading=24,
         textColor=COLOR_DARK
     )
     
@@ -40,40 +40,39 @@ def build_pdf(filename, lang='es'):
         'CVTitle',
         parent=styles['Normal'],
         fontName='Helvetica-Bold',
-        fontSize=13,
-        leading=16,
-        textColor=COLOR_PRIMARY,
-        spaceAfter=12
+        fontSize=11,
+        leading=13,
+        textColor=COLOR_PRIMARY
     )
     
     style_h1 = ParagraphStyle(
         'CVH1',
         parent=styles['Normal'],
         fontName='Helvetica-Bold',
-        fontSize=11,
-        leading=14,
+        fontSize=9.5,
+        leading=12,
         textColor=COLOR_DARK,
-        spaceBefore=10,
-        spaceAfter=6,
-        keepWithNext=True
+        spaceBefore=5,
+        spaceAfter=3,
+        keepWithNext=False
     )
     
     style_body = ParagraphStyle(
         'CVBody',
         parent=styles['Normal'],
         fontName='Helvetica',
-        fontSize=8.5,
-        leading=11.5,
+        fontSize=7.8,
+        leading=10.5,
         textColor=COLOR_LIGHT,
-        spaceAfter=8
+        spaceAfter=4
     )
     
     style_job_title = ParagraphStyle(
         'CVJobTitle',
         parent=styles['Normal'],
         fontName='Helvetica-Bold',
-        fontSize=9.5,
-        leading=12,
+        fontSize=8.5,
+        leading=11,
         textColor=COLOR_DARK
     )
     
@@ -81,8 +80,8 @@ def build_pdf(filename, lang='es'):
         'CVJobMeta',
         parent=styles['Normal'],
         fontName='Helvetica-Bold',
-        fontSize=8,
-        leading=10,
+        fontSize=7.5,
+        leading=9.5,
         textColor=COLOR_PRIMARY
     )
     
@@ -90,8 +89,8 @@ def build_pdf(filename, lang='es'):
         'CVJobDate',
         parent=styles['Normal'],
         fontName='Helvetica-Oblique',
-        fontSize=8,
-        leading=10,
+        fontSize=7.5,
+        leading=9.5,
         textColor=COLOR_LIGHT
     )
     
@@ -99,30 +98,30 @@ def build_pdf(filename, lang='es'):
         'CVBullet',
         parent=styles['Normal'],
         fontName='Helvetica',
-        fontSize=8,
-        leading=11,
+        fontSize=7.5,
+        leading=10,
         textColor=COLOR_LIGHT,
-        leftIndent=10,
-        firstLineIndent=-8,
-        spaceAfter=3
+        leftIndent=8,
+        firstLineIndent=-6,
+        spaceAfter=1.5
     )
     
     style_tech = ParagraphStyle(
         'CVTech',
         parent=styles['Normal'],
         fontName='Helvetica-Bold',
-        fontSize=7.5,
-        leading=9.5,
+        fontSize=7,
+        leading=9,
         textColor=COLOR_LIGHT,
-        spaceAfter=8
+        spaceAfter=4
     )
     
     style_sidebar_label = ParagraphStyle(
         'CVSidebarLabel',
         parent=styles['Normal'],
         fontName='Helvetica-Bold',
-        fontSize=8.5,
-        leading=11,
+        fontSize=8,
+        leading=10,
         textColor=COLOR_DARK
     )
     
@@ -130,10 +129,10 @@ def build_pdf(filename, lang='es'):
         'CVSidebarVal',
         parent=styles['Normal'],
         fontName='Helvetica',
-        fontSize=8,
-        leading=10.5,
+        fontSize=7.5,
+        leading=9.5,
         textColor=COLOR_LIGHT,
-        spaceAfter=6
+        spaceAfter=4
     )
 
     story = []
@@ -145,20 +144,20 @@ def build_pdf(filename, lang='es'):
         [
             Paragraph("Adriel Avila", style_name),
             Paragraph(
-                "<b>Web CV:</b> <font color='#2d8259'><u>thexpert507.github.io/cv</u></font>" if lang == 'es' else "<b>Web CV:</b> <font color='#2d8259'><u>thexpert507.github.io/cv</u></font>",
-                ParagraphStyle('CVWebLink', parent=styles['Normal'], fontName='Helvetica', fontSize=9, leading=11, alignment=2, textColor=COLOR_LIGHT)
+                "<b>Web CV:</b> <font color='#2d8259'><u>thexpert507.github.io/cv</u></font>",
+                ParagraphStyle('CVWebLink', parent=styles['Normal'], fontName='Helvetica', fontSize=8, leading=10, alignment=2, textColor=COLOR_LIGHT)
             )
         ],
         [
             Paragraph("Desarrollador Fullstack Senior" if lang == 'es' else "Senior Fullstack Developer", style_title),
             Paragraph(
                 "adrielarnel00@gmail.com | +507 64970936",
-                ParagraphStyle('CVContactTop', parent=styles['Normal'], fontName='Helvetica', fontSize=8.5, leading=11, alignment=2, textColor=COLOR_LIGHT)
+                ParagraphStyle('CVContactTop', parent=styles['Normal'], fontName='Helvetica', fontSize=8, leading=10, alignment=2, textColor=COLOR_LIGHT)
             )
         ]
     ]
     
-    header_table = Table(header_data, colWidths=[4.2 * inch, 3.5 * inch])
+    header_table = Table(header_data, colWidths=[4.2 * inch, 3.7 * inch])
     header_table.setStyle(TableStyle([
         ('VALIGN', (0,0), (-1,-1), 'BOTTOM'),
         ('LEFTPADDING', (0,0), (-1,-1), 0),
@@ -168,8 +167,8 @@ def build_pdf(filename, lang='es'):
     ]))
     
     story.append(header_table)
-    story.append(Spacer(1, 4))
-    story.append(HRFlowable(width="100%", thickness=1.5, color=COLOR_PRIMARY, spaceAfter=8, spaceBefore=4))
+    story.append(Spacer(1, 2))
+    story.append(HRFlowable(width="100%", thickness=1.5, color=COLOR_PRIMARY, spaceAfter=5, spaceBefore=2))
     
     # -------------------------------------------------------------------------
     # COLUMNS LAYOUT
@@ -181,12 +180,12 @@ def build_pdf(filename, lang='es'):
     # About
     about_title = "Sobre Mí" if lang == 'es' else "About Me"
     left_flowables.append(Paragraph(about_title.upper(), style_h1))
-    left_flowables.append(HRFlowable(width="100%", thickness=0.5, color=COLOR_MUTED, spaceAfter=6, spaceBefore=2))
+    left_flowables.append(HRFlowable(width="100%", thickness=0.5, color=COLOR_MUTED, spaceAfter=4, spaceBefore=1))
     
     about_text = (
         "Desarrollador Fullstack Senior autodidacta con más de 8 años de experiencia práctica en el diseño, "
         "construcción y mantenimiento de aplicaciones web robustas en producción. Especializado en TypeScript, "
-        "architecturas backend escalables e integraciones reales de IA y Web3. Enfocado en aportar criterio técnico "
+        "arquitecturas backend escalables e integraciones reales de IA y Web3. Enfocado en aportar criterio técnico "
         "autónomo, ownership y calidad de código en entornos remotos."
         if lang == 'es' else
         "Self-taught Senior Fullstack Developer with 8+ years of hands-on experience designing, building, "
@@ -199,7 +198,7 @@ def build_pdf(filename, lang='es'):
     # Experience
     exp_title = "Experiencia Laboral" if lang == 'es' else "Work Experience"
     left_flowables.append(Paragraph(exp_title.upper(), style_h1))
-    left_flowables.append(HRFlowable(width="100%", thickness=0.5, color=COLOR_MUTED, spaceAfter=8, spaceBefore=2))
+    left_flowables.append(HRFlowable(width="100%", thickness=0.5, color=COLOR_MUTED, spaceAfter=4, spaceBefore=1))
     
     # Jobs data
     jobs = [
@@ -244,15 +243,13 @@ def build_pdf(filename, lang='es'):
             'company': 'Tecnitech Solutions',
             'date': 'Ene. 2018 - Ene. 2022' if lang == 'es' else 'Jan. 2018 - Jan. 2022',
             'bullets': [
-                "Construcción y mantenimiento de aplicaciones web interactivas.",
+                "Construcción y mantenimiento de aplicaciones web interactivas y robustas.",
                 "Desarrollo de interfaces dinámicas utilizando AngularJS y JavaScript (ES6+).",
-                "Diseño y optimización de esquemas de bases de datos relacionales.",
-                "Aseguramiento del diseño responsivo y la compatibilidad entre navegadores."
+                "Diseño y optimización de esquemas de bases de datos relacionales."
             ] if lang == 'es' else [
                 "Built and maintained robust, interactive web applications.",
                 "Developed dynamic user interfaces using AngularJS and JavaScript (ES6+).",
-                "Designed and optimized relational database schemas.",
-                "Ensured responsive layouts and cross-browser compatibility across modern browsers."
+                "Designed and optimized relational database schemas."
             ],
             'tech': 'AngularJS, JavaScript, HTML5/CSS3, Relational Databases'
         },
@@ -277,14 +274,14 @@ def build_pdf(filename, lang='es'):
         # Job Meta (Company & Date side-by-side)
         meta_table = Table(
             [[Paragraph(job['company'], style_job_meta), Paragraph(job['date'], style_job_date)]],
-            colWidths=[3.0 * inch, 1.8 * inch]
+            colWidths=[3.2 * inch, 1.8 * inch]
         )
         meta_table.setStyle(TableStyle([
             ('VALIGN', (0,0), (-1,-1), 'TOP'),
             ('ALIGN', (1,0), (1,0), 'RIGHT'),
             ('LEFTPADDING', (0,0), (-1,-1), 0),
             ('RIGHTPADDING', (0,0), (-1,-1), 0),
-            ('BOTTOMPADDING', (0,0), (-1,-1), 2),
+            ('BOTTOMPADDING', (0,0), (-1,-1), 1),
             ('TOPPADDING', (0,0), (-1,-1), 1),
         ]))
         left_flowables.append(meta_table)
@@ -292,21 +289,20 @@ def build_pdf(filename, lang='es'):
         for bullet in job['bullets']:
             left_flowables.append(Paragraph(f"&bull; {bullet}", style_bullet))
         
-        left_flowables.append(Spacer(1, 2))
+        left_flowables.append(Spacer(1, 1))
         tech_label = "<b>Tecnologías:</b>" if lang == 'es' else "<b>Tech:</b>"
         left_flowables.append(Paragraph(f"{tech_label} {job['tech']}", style_tech))
-        left_flowables.append(Spacer(1, 3))
+        left_flowables.append(Spacer(1, 2))
 
     # --- RIGHT COLUMN: CONTACT, SKILLS, EDUCATION ---
     # Profile Image
     if os.path.exists('profile.jpeg'):
         from reportlab.platypus import Image
-        # Using 1.3 inches for a perfect circular-like ratio or square
-        img = Image('profile.jpeg', width=1.3 * inch, height=1.3 * inch)
+        img = Image('profile.jpeg', width=1.1 * inch, height=1.1 * inch)
         img_table = Table([[img]], colWidths=[2.3 * inch])
         img_table.setStyle(TableStyle([
             ('ALIGN', (0,0), (-1,-1), 'CENTER'),
-            ('BOTTOMPADDING', (0,0), (-1,-1), 12),
+            ('BOTTOMPADDING', (0,0), (-1,-1), 8),
             ('TOPPADDING', (0,0), (-1,-1), 0),
             ('LEFTPADDING', (0,0), (-1,-1), 0),
             ('RIGHTPADDING', (0,0), (-1,-1), 0),
@@ -316,7 +312,7 @@ def build_pdf(filename, lang='es'):
     # Contact Title
     contact_title = "Contacto" if lang == 'es' else "Contact"
     right_flowables.append(Paragraph(contact_title.upper(), style_h1))
-    right_flowables.append(HRFlowable(width="100%", thickness=0.5, color=COLOR_MUTED, spaceAfter=8, spaceBefore=2))
+    right_flowables.append(HRFlowable(width="100%", thickness=0.5, color=COLOR_MUTED, spaceAfter=6, spaceBefore=1))
     
     contacts = [
         ("Email", "adrielarnel00@gmail.com"),
@@ -333,12 +329,12 @@ def build_pdf(filename, lang='es'):
     # Skills Title
     skills_title = "Aptitudes" if lang == 'es' else "Skills"
     right_flowables.append(Paragraph(skills_title.upper(), style_h1))
-    right_flowables.append(HRFlowable(width="100%", thickness=0.5, color=COLOR_MUTED, spaceAfter=8, spaceBefore=2))
+    right_flowables.append(HRFlowable(width="100%", thickness=0.5, color=COLOR_MUTED, spaceAfter=6, spaceBefore=1))
     
     skills = [
-        ("Backend", "Node.js, NestJS, PostgreSQL, Redis, Arquitectura de Software" if lang == 'es' else "Node.js, NestJS, PostgreSQL, Redis, Software Architecture"),
-        ("Frontend & Design", "TypeScript, React.js, AngularJS, JavaScript, HTML5/CSS3, Diseño Adaptable" if lang == 'es' else "TypeScript, React.js, AngularJS, JavaScript, HTML5/CSS3, Responsive Design"),
-        ("Web3 & Cloud", "web3.js, Docker, Google BigQuery, Firebase"),
+        ("Backend", "Node.js, NestJS, PostgreSQL, Redis, Arquitectura" if lang == 'es' else "Node.js, NestJS, PostgreSQL, Redis, Architecture"),
+        ("Frontend & Design", "TypeScript, React.js, AngularJS, JavaScript, HTML5/CSS3, Adaptable" if lang == 'es' else "TypeScript, React.js, AngularJS, JavaScript, HTML5/CSS3, Responsive"),
+        ("Web3 & Cloud", "web3.js, Docker, BigQuery, Firebase"),
         ("Enfoques" if lang == 'es' else "Focus", "Prog. Funcional, POO, E-commerce, CMS" if lang == 'es' else "Functional Prog., OOP, E-commerce, CMS")
     ]
     for cat, items in skills:
@@ -348,13 +344,13 @@ def build_pdf(filename, lang='es'):
     # Education Title
     edu_title = "Educación" if lang == 'es' else "Education"
     right_flowables.append(Paragraph(edu_title.upper(), style_h1))
-    right_flowables.append(HRFlowable(width="100%", thickness=0.5, color=COLOR_MUTED, spaceAfter=8, spaceBefore=2))
+    right_flowables.append(HRFlowable(width="100%", thickness=0.5, color=COLOR_MUTED, spaceAfter=6, spaceBefore=1))
     
     edu_headline = "Autodidacta e Independiente" if lang == 'es' else "Self-Taught & Continuous Learning"
     edu_body = (
-        "Enfoque continuo en desarrollo de software, arquitectura de sistemas y nuevas tecnologías a través de la práctica."
+        "Enfoque en desarrollo de software, arquitectura de sistemas y nuevas tecnologías."
         if lang == 'es' else
-        "Continuous focus on software development, systems architecture, and emerging technologies through practice."
+        "Focus on software development, systems architecture, and emerging technologies."
     )
     right_flowables.append(Paragraph(edu_headline, style_sidebar_label))
     right_flowables.append(Paragraph(edu_body, style_sidebar_val))
@@ -362,11 +358,11 @@ def build_pdf(filename, lang='es'):
     # Languages Title
     lang_title = "Idiomas" if lang == 'es' else "Languages"
     right_flowables.append(Paragraph(lang_title.upper(), style_h1))
-    right_flowables.append(HRFlowable(width="100%", thickness=0.5, color=COLOR_MUTED, spaceAfter=8, spaceBefore=2))
+    right_flowables.append(HRFlowable(width="100%", thickness=0.5, color=COLOR_MUTED, spaceAfter=6, spaceBefore=1))
     
     right_flowables.append(Paragraph("Inglés" if lang == 'es' else "English", style_sidebar_label))
     right_flowables.append(Paragraph(
-        "Técnico / Intermedio (Lectura y comunicación escrita fluida)" if lang == 'es' else "Professional Working Proficiency (Fluent in written & technical communication)", 
+        "Técnico / Intermedio (Lectura y comunicación escrita fluida)" if lang == 'es' else "Professional Working (Fluent in written & technical communication)", 
         style_sidebar_val
     ))
     
@@ -374,14 +370,12 @@ def build_pdf(filename, lang='es'):
     right_flowables.append(Paragraph("Nativo" if lang == 'es' else "Native speaker", style_sidebar_val))
 
     # --- MASTER TABLE ---
-    # Constructing a table to put left and right side-by-side with a nice divider
-    # Left column width: 4.8 inches, right column width: 2.7 inches
-    # Spacing between columns: 0.2 inches
     master_data = [[left_flowables, "", right_flowables]]
     
+    # Left column: 5.0 in, spacer: 0.15 in, right column: 2.55 in (Total = 7.7 in)
     master_table = Table(
         master_data,
-        colWidths=[4.8 * inch, 0.2 * inch, 2.7 * inch]
+        colWidths=[5.0 * inch, 0.15 * inch, 2.55 * inch]
     )
     
     master_table.setStyle(TableStyle([
@@ -390,14 +384,13 @@ def build_pdf(filename, lang='es'):
         ('RIGHTPADDING', (0,0), (-1,-1), 0),
         ('TOPPADDING', (0,0), (-1,-1), 0),
         ('BOTTOMPADDING', (0,0), (-1,-1), 0),
-        # Light grey background for the sidebar (right cell)
+        # Sidebar formatting
         ('BACKGROUND', (2,0), (2,0), COLOR_BG_SIDEBAR),
-        ('LEFTPADDING', (2,0), (2,0), 12),
-        ('RIGHTPADDING', (2,0), (2,0), 12),
-        ('TOPPADDING', (2,0), (2,0), 10),
-        ('BOTTOMPADDING', (2,0), (2,0), 10),
-        # Right border for the sidebar as a neat divider
-        ('LINEBEFORE', (2,0), (2,0), 1, COLOR_MUTED),
+        ('LEFTPADDING', (2,0), (2,0), 10),
+        ('RIGHTPADDING', (2,0), (2,0), 10),
+        ('TOPPADDING', (2,0), (2,0), 8),
+        ('BOTTOMPADDING', (2,0), (2,0), 8),
+        ('LINEBEFORE', (2,0), (2,0), 0.5, COLOR_MUTED),
     ]))
     
     story.append(master_table)
@@ -406,7 +399,5 @@ def build_pdf(filename, lang='es'):
     doc.build(story)
 
 if __name__ == '__main__':
-    print("Generando PDFs...")
     build_pdf("cv_es.pdf", lang='es')
     build_pdf("cv_en.pdf", lang='en')
-    print("PDFs generados con éxito: cv_es.pdf y cv_en.pdf")
